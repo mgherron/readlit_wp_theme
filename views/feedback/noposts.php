@@ -1,0 +1,1 @@
+<h2>Sorry, there are currently no posts.</h2>

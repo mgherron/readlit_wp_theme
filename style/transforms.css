@@ -1,0 +1,47 @@
+.csstransitions .book_sidebar {
+
+  left: -200px;
+
+  /*left: 0 !important;*/
+
+  /*-webkit-transform: translate3d(-200px, 0, 0);
+  -moz-transform: translate3d(-200px, 0, 0);
+  -o-transform: translate3d(-200px, 0, 0);
+  transform: translate3d(-200px, 0, 0);
+*/
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+
+}
+
+.csstransitions .main-area {
+
+  left: 0;
+
+  /*-webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);*/
+
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  -o-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+
+}
+
+.csstransitions .main-area.out {
+
+  left: 200px;
+  /*-webkit-transform: translate3d(200px, 0, 0);*/
+
+}
+
+.csstransitions .book_sidebar.in {
+
+  left: 0;
+  /*-webkit-transform: translate3d(0, 0, 0);*/
+
+}
