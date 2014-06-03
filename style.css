@@ -60,7 +60,7 @@ a {
 	text-decoration:none;
 	background:transparent;
 }
-a:hover, a:active {
+a:not(#chapters a):hover, a:not(#chapters a):active {
 	outline:0;
 	text-decoration: underline;
 }
@@ -292,10 +292,15 @@ border-radius:4px;-moz-border-radius:4px;-webkit-border-radius:4px;border:1px so
 				font-size: 13px;
 				color: #ffffff;
 			}
-				.book_sidebar .chaptermenu ul li a:hover {
+				.no-touch .book_sidebar .chaptermenu ul li a:hover {
 					background: #2e3e46;
 					text-decoration: none;
 				}
+
+        .touch .book_sidebar .chaptermenu ul li a:active {
+          background: #2e3e46;
+          text-decoration: none !important;
+        }
 				
 	.book_sidebar .book_info {
 		width: 100%;

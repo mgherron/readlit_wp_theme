@@ -1,14 +1,17 @@
 var Book = (function() {
 
+  var iOS     = (navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false);
+
   var Hammer  = require('../vendor/hammer');
 
   var classes = document.body.className.split(' ');
 
-  var single  = document.querySelector('body.single-books');
-  var content = document.querySelector('#content');
-  var book    = document.querySelector('#book');
-  var menu    = document.querySelector('a.menu_toggle');
-  var logo    = document.querySelector('.pagetitle_cont a');
+  var single    = document.querySelector('body.single-books');
+  var content   = document.querySelector('#content');
+  var book      = document.querySelector('#book');
+  var menu      = document.querySelector('a.menu_toggle');
+  var logo      = document.querySelector('.pagetitle_cont a');
+  var chapters  = document.querySelector('#chapters');
 
   var fontSize = 16;
   var minFontSize = 10;
@@ -20,7 +23,30 @@ var Book = (function() {
 
     clickTouchEvent = 'touchstart';
 
+    if(iOS) {
+
+      Hammer(chapters, {
+
+        preventDefault: false,
+        behavior: {
+          userSelect: 'all'
+        }
+
+      })
+      .on('tap', function(event) {
+        if(event.target && event.target.nodeName === 'A') {
+          event.preventDefault();
+          var href = event.target.getAttribute('href');
+          book.setAttribute('style', '-webkit-overflow-scrolling: none;');
+          window.location.hash = href;
+          book.removeAttribute('style');
+        }
+      });
+
+    }
+
     logo.addEventListener(clickTouchEvent, function(event) {
+      event.preventDefault();
       var href = logo.getAttribute('href');
       window.location.href = href;
     });
