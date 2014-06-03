@@ -1,94 +1,144 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-app = {};
-
-app.featureList = document.querySelector("html").className.split(' ');
+require('./helpers/helpers');
 
 var Modules = (function() {
 
   var modules = {
-    page : require('./pages/page')
+    book : require('./modules/book')
   };
 
-  modules.page();
+  modules.book();
 
 })();
-},{"./pages/page":2}],2:[function(require,module,exports){
-var Page = (function() {
+},{"./helpers/helpers":2,"./modules/book":3}],2:[function(require,module,exports){
+if (!Array.prototype.indexOf)
+{
+  Array.prototype.indexOf = function(elt /*, from*/)
+  {
+    var len = this.length >>> 0;
+
+    var from = Number(arguments[1]) || 0;
+    from = (from < 0)
+         ? Math.ceil(from)
+         : Math.floor(from);
+    if (from < 0)
+      from += len;
+
+    for (; from < len; from++)
+    {
+      if (from in this &&
+          this[from] === elt)
+        return from;
+    }
+    return -1;
+  };
+}
+},{}],3:[function(require,module,exports){
+var Book = (function() {
 
   var Hammer  = require('../vendor/hammer');
 
+  var classes = document.body.className.split(' ');
+
+  var single  = document.querySelector('body.single-books');
   var content = document.querySelector('#content');
   var book    = document.querySelector('#book');
+  var menu    = document.querySelector('a.menu_toggle');
+  var logo    = document.querySelector('.pagetitle_cont a');
 
   var fontSize = 16;
   var minFontSize = 10;
   var maxFontSize = 32;
 
-  
-  // Pinch to resize text
-  Hammer(document.body, {
+  var clickTouchEvent = 'click';
+
+  if(document.querySelector('html').className.split(' ').indexOf('touch') > -1) {
+
+    clickTouchEvent = 'touchstart';
+
+    logo.addEventListener(clickTouchEvent, function(event) {
+      var href = logo.getAttribute('href');
+      window.location.href = href;
+    });
     
-    preventDefault: true,
-    behavior: {
-      userSelect: 'all'
-    }
+    // Pinch to resize text
+    Hammer(single, {
+      
+      preventDefault: true,
+      behavior: {
+        userSelect: 'all'
+      }
 
-  })
-  .on('pinchin', function(event) {
+    })
+    .on('pinchin', function(event) {
 
-    console.log('in', event);
+      event.gesture.stopPropagation();
+      event.gesture.stopDetect();
 
-    event.gesture.stopPropagation();
-    event.gesture.stopDetect();
+      if(fontSize > minFontSize) {
+        fontSize--;
+        book.style.fontSize = fontSize + 'px';
+      }
 
-    if(fontSize > minFontSize) {
-      fontSize--;
-      book.style.fontSize = fontSize + 'px';
-    }
+    })
+    .on('pinchout', function(event) {
 
-  })
-  .on('pinchout', function(event) {
+      event.gesture.stopPropagation();
+      event.gesture.stopDetect();
 
-    console.log('out', event);
+      if(fontSize < maxFontSize) {
+        fontSize++;
+        book.style.fontSize = fontSize + 'px';
+      }
 
-    event.gesture.stopPropagation();
-    event.gesture.stopDetect();
+    });
 
-    if(fontSize < maxFontSize) {
-      fontSize++;
-      book.style.fontSize = fontSize + 'px';
-    }
+    // Drag to display sidebar
+    Hammer(content, {
 
+      preventDefault: false,
+      behavior: {
+        userSelect: 'all'
+      }
+
+    })
+    .on('dragright', function(event) {
+      showSidebar();
+    })
+    .on('dragleft', function(event) {
+      hideSidebar();
+    });
+
+  }
+
+  menu.addEventListener(clickTouchEvent, function(event) {
+    event.preventDefault();
+    toggleSidebar();
   });
 
-  // Drag to display sidebar
-  Hammer(content, {
+  var hideSidebar = (function() {
+    var ind = classes.indexOf('show-chapters');
+    if(ind > -1) classes.splice(ind, 1);
+    document.body.className = classes.join(' ');
+  });
 
-    preventDefault: false,
-    behavior: {
-      userSelect: 'all'
+  var showSidebar = (function() {
+    if(classes.indexOf('show-chapters') === -1) classes.push('show-chapters');
+    document.body.className = classes.join(' ');
+  });
+
+  var toggleSidebar = (function(event) {    
+    if(classes.indexOf('show-chapters') > -1) {
+      hideSidebar();
+    } else {
+      showSidebar();
     }
-
-  })
-  .on('dragright', function(event) {
-
-    event.gesture.stopDetect();
-
-    content.className = 'show-chapters';
-
-  })
-  .on('dragleft', function(event) {
-
-    event.gesture.stopDetect();
-
-    content.className = '';
-
   });
 
 });
 
-module.exports = Page;
-},{"../vendor/hammer":3}],3:[function(require,module,exports){
+module.exports = Book;
+},{"../vendor/hammer":4}],4:[function(require,module,exports){
 /*! Hammer.JS - v1.1.3 - 2014-05-20
  * http://eightmedia.github.io/hammer.js
  *

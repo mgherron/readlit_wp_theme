@@ -10,6 +10,26 @@ $inc_path = (TEMPLATEPATH.'/functions/');
 require_once ($inc_path.'book_options.php');
 require_once ($inc_path.'widgets.php');
 
+/************************
+
+  Relative script URLs
+
+************************/
+add_filter( 'script_loader_src',  'relative_urls' );
+add_filter( 'style_loader_src',   'relative_urls' );
+function relative_urls($url)
+{
+  if( is_admin() ) return $url;
+  return str_replace(site_url(), '', $url);
+}
+
+/************************
+
+  Relative permalinks
+
+************************/
+add_filter( 'the_permalink', 'wp_make_link_relative' );
+
 /**************************
 
 	Theme scripts
@@ -18,7 +38,10 @@ require_once ($inc_path.'widgets.php');
 
 function theme_scripts() {
   wp_enqueue_script('modernizr', get_bloginfo('template_directory') . '/src/js/vendor/modernizr.min.js');
-	wp_enqueue_style( 'main-style', get_stylesheet_uri() );
+  wp_enqueue_script('readlit', get_bloginfo('template_directory') . '/dist/js/min.js', null, null, true);
+  wp_dequeue_script('jquery');
+  wp_enqueue_style( 'main-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'overrides', get_bloginfo('template_directory') . '/dist/css/min.css' );
 }
 add_action('wp_enqueue_scripts', 'theme_scripts');
 

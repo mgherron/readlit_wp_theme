@@ -1,13 +1,11 @@
-app = {};
-
-app.featureList = document.querySelector("html").className.split(' ');
+require('./helpers/helpers');
 
 var Modules = (function() {
 
   var modules = {
-    page : require('./pages/page')
+    book : require('./modules/book')
   };
 
-  modules.page();
+  modules.book();
 
 })();
