@@ -28,7 +28,7 @@
 <header class="pageheader">
   <a class="menu_toggle" href="#">Menu</a>
   <div class="pagetitle_cont">
-    <a href="/"><img src="<?= wp_make_link_relative(get_bloginfo('template_directory')) ?>/style/images/logo.png" width="90" height="18" alt="ReadL.it Homepage" class="logo_middle"/></a>
+    <a href="/"><img src="<?= wp_make_link_relative(get_bloginfo('template_directory')) ?>/img/logo.png" width="90" height="18" alt="ReadL.it Homepage" class="logo_middle"/></a>
   </div>
 </header>
 

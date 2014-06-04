@@ -34,8 +34,11 @@
 html {
   width: 100%;
   height: 100%;
-  overflow: hidden;
   -webkit-text-size-adjust: none;
+
+  .touch & {
+    overflow: hidden;
+  }
 }
 
 body {
@@ -69,21 +72,6 @@ h1, h2, h3, h4 {
 
   .show-chapters & {
     left: 200px;
-  }
-}
-
-.menu_toggle {
-  height: 15px;
-  width: 20px;
-  float: left;
-  position: relative;
-  cursor: pointer;
-  background: url('style/images/toggle_icon_20x15.png') no-repeat;
-  text-indent: -50000px;
-  margin: 17px 0px 0 30px;
-  
-  &:hover {
-    background-position: 0px -15px;
   }
 }
 
@@ -318,17 +306,19 @@ h1, h2, h3, h4 {
 .menu_toggle {
   width: 50px;
   height: 50px;
-  margin-left: 15px;
   margin-top: 0;
+  float: left;
+  margin: 0 0 0 15px;
   position: relative;
   background: transparent !important;
+  text-indent: -9999em;
 
   &:after {
     display: block;
     content: "";
     width: 20px;
     height: 15px;
-    background: url('../../style/images/toggle_icon_20x15.png') no-repeat 0 0;
+    background: url('../../img/toggle_icon_20x15.png') no-repeat 0 0;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -336,12 +326,12 @@ h1, h2, h3, h4 {
   }
 
   &:hover:after {
-    background: url('../../style/images/toggle_icon_20x15.png') no-repeat 0 100%;
+    background: url('../../img/toggle_icon_20x15.png') no-repeat 0 100%;
   }
 
   .show-chapters & {
     &:after {
-      background: url('../../style/images/toggle_icon_20x15.png') no-repeat 0 100%;
+      background: url('../../img/toggle_icon_20x15.png') no-repeat 0 100%;
     }
   }
 }

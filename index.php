@@ -13,7 +13,7 @@ get_header();
 <div class="left">
 	<div class="left_main">
 		<div class="left_main_top">
-			<img src="<?= wp_make_link_relative(get_bloginfo('template_directory')) ?>/style/images/logo.png" alt="readlit" class="logo"/>
+			<img src="<?= wp_make_link_relative(get_bloginfo('template_directory')) ?>/img/logo.png" alt="readlit" class="logo"/>
 			<p class="main_descp">
 				<em>Open source your reading.</em>
 			</p>
