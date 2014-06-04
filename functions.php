@@ -33,7 +33,7 @@ add_filter( 'the_permalink', 'wp_make_link_relative' );
 
 function theme_scripts() {
   wp_enqueue_script('modernizr', get_bloginfo('template_directory') . '/src/js/vendor/modernizr.min.js');
-  wp_enqueue_script('readlit', get_bloginfo('template_directory') . '/dist/js/combined.js', null, null, true);
+  wp_enqueue_script('readlit', get_bloginfo('template_directory') . '/dist/js/min.js', null, null, true);
   wp_dequeue_script('jquery');
   wp_enqueue_style( 'main-style', get_stylesheet_uri() );
 	wp_enqueue_style( 'overrides', get_bloginfo('template_directory') . '/dist/css/min.css' );
