@@ -32,84 +32,64 @@
   </div>
 </header>
 
-<div id="wrapper">
+<nav id="sidebar">
 
-  <section id="content">
+  <div id="sidebar-scroller">        
 
-    <nav id="sidebar" class="chapter_menu_cont book_sidebar">
+    <div class="chaptermenu">
+      <h3>Chapter Menu</h3>
+      <ul id="chapters">
 
-      <div class="head"></div>
+        <?php foreach($chapters_arr as $chapter) { ?>
 
-      <div id="sidebar-scroller">        
-        
-        <?php if($chapters_arr) { ?>
-
-          <div class="chaptermenu">
-          	<h3>Chapter Menu</h3>
-          	<ul id="chapters">
-
-          		<?php foreach($chapters_arr as $chapter) { ?>
-
-          			<li><a href="#<?= $chapter['anchor'] ?>">
-          				<?= $chapter['title'] ?>
-          			</a></li>
-
-          		<?php } ?>
-
-          	</ul>
-          </div>
+          <li><a href="#<?= $chapter['anchor'] ?>">
+            <?= $chapter['title'] ?>
+          </a></li>
 
         <?php } ?>
-        
-        <div class="book_info">
 
-        	<h3>Book Information</h3>
-          <div class="sp_info"><strong>Title</strong><?php the_title(); ?></div>
+      </ul>
+    </div>
+    
+    <div class="book_info">
 
-          <? if($book_meta['author']) { ?>
-          	<div class="sp_info">
-              <strong>Author</strong><?= $book_meta['author'] ?>
-            </div>
-          <? } ?>
+      <h3>Book Information</h3>
+      <div class="sp_info"><strong>Title</strong><?php the_title(); ?></div>
 
-          <? if($book_meta['note']) { ?>
-            <div class="sp_info"><?= apply_filters('the_content', $book_meta['note']) ?></div>
-          <? } ?>
-          
+      <? if($book_meta['author']) { ?>
+        <div class="sp_info">
+          <strong>Author</strong><?= $book_meta['author'] ?>
         </div>
+      <? } ?>
 
-      </div>
-
-    </nav>
+      <? if($book_meta['note']) { ?>
+        <div class="sp_info"><?= apply_filters('the_content', $book_meta['note']) ?></div>
+      <? } ?>
       
-    <div id="book" class="main-area">
-
-      <div class="bookcontent">
-      	
-      	<h1 class="thetitle"><?php the_title(); ?></h1>
-      	<h3 class="theauthor">By <?= $book_meta['author'] ?></h3>
-      			
-    	<?php  if($chapters_arr) { foreach($chapters_arr as $chapter) { ?>
-    		
-    		<chapter id="<?= $chapter['anchor'] ?>">
-    			
-    			<h3><?= $chapter['title'] ?></h3>
-
-    			<?= $chapter['copy']; ?>
-    			
-    		</chapter>
-    	 
-    	<?php }} ?>
-    	
-    	<h2 class="theend">THE END</h2>
-
-      </div>
-        
     </div>
 
-  </section>
+  </div>
 
-</div>
+</nav>
+
+<section id="book">
+
+  <article class="bookcontent">
+  	
+  	<h1 class="thetitle"><?php the_title(); ?></h1>
+  	<h3 class="theauthor">By <?= $book_meta['author'] ?></h3>
+  			
+  	<?php  if($chapters_arr) { foreach($chapters_arr as $chapter) { ?>
+  		<chapter id="<?= $chapter['anchor'] ?>">
+  			<h3><?= $chapter['title'] ?></h3>
+  			<?= $chapter['copy']; ?>
+  		</chapter>
+  	<?php }} ?>
+  	
+  	<h2 class="theend">THE END</h2>
+
+  </article>
+</section>
 
 <?php 
 	endwhile; endif;
