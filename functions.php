@@ -15,13 +15,8 @@ require_once ($inc_path.'widgets.php');
   Relative script URLs
 
 ************************/
-add_filter( 'script_loader_src',  'relative_urls' );
-add_filter( 'style_loader_src',   'relative_urls' );
-function relative_urls($url)
-{
-  if( is_admin() ) return $url;
-  return str_replace(site_url(), '', $url);
-}
+add_filter( 'script_loader_src', 'wp_make_link_relative' );
+add_filter( 'style_loader_src',  'wp_make_link_relative' );
 
 /************************
 
