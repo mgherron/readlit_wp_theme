@@ -32,6 +32,30 @@ var Book = (function(DOM) {
       hideSidebar();
     });
 
+    Hammer(DOM.book, hammerOptions)
+    .on('pinchin', function(event) {
+
+      event.gesture.stopPropagation();
+      event.gesture.stopDetect();
+
+      if(fontSize > minFontSize) {
+        fontSize--;
+        DOM.book.style.fontSize = fontSize + 'px';
+      }
+
+    })
+    .on('pinchout', function(event) {
+
+      event.gesture.stopPropagation();
+      event.gesture.stopDetect();
+
+      if(fontSize < maxFontSize) {
+        fontSize++;
+        DOM.book.style.fontSize = fontSize + 'px';
+      }
+
+    });
+
     clickEvent = 'touchend';
 
   }
