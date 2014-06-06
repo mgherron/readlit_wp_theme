@@ -22,7 +22,7 @@ get_header();
 			<p class="main_descp">
 				All content is available in the public domain, courtesy of <a href="http://www.gutenberg.org/">Project Gutenberg</a>.
 			<p class="main_descp">
-				<a href="mailto: readlitapp@gmail.com">Contact us</a> to suggest a book or get involved.
+				<a href="mailto: readlitapp@gmail.com">Contact us</a> to suggest a book.
 			</P>
 			<!--
 			<input type="text" class="email" placeholder="Your Email Address"/>
