@@ -42,7 +42,7 @@
 
         <?php foreach($chapters_arr as $chapter) { ?>
 
-          <li><a href="#<?= $chapter['anchor'] ?>">
+          <li><a href="#<?= $chapter['count'].'-'.$chapter['anchor'] ?>">
             <?= $chapter['title'] ?>
           </a></li>
 
@@ -75,12 +75,12 @@
 <section id="book">
 
   <article class="bookcontent">
-  	
+
   	<h1 class="thetitle"><?php the_title(); ?></h1>
   	<h3 class="theauthor">By <?= $book_meta['author'] ?></h3>
   			
   	<?php  if($chapters_arr) { foreach($chapters_arr as $chapter) { ?>
-  		<chapter id="<?= $chapter['anchor'] ?>">
+  		<chapter id="<?= $chapter['count'].'-'.$chapter['anchor'] ?>">
   			<h3><?= $chapter['title'] ?></h3>
   			<?= $chapter['copy']; ?>
   		</chapter>
