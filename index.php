@@ -49,15 +49,22 @@ get_header();
 		foreach($books as $post): setup_postdata($post);
 			$term_list = wp_get_post_terms($post->ID, 'book-category', array("fields" => "names"));
 			$book_meta = get_post_meta($post->ID, 'book_meta', true);
-	?>
 
-		<a class="book_common green" href="<?php the_permalink(); ?>">
-			<p class="pbookname"><?php the_title(); ?></p>
-			<p class="pauthor"><?=$book_meta['author']?></p>
-			<p class="pcategory"><?php echo implode(', ', $term_list); ?></p>
-		</a>
+			$color = '';
+			if ($term_list[0]=='Fiction'){ $color = 'green';}
+				elseif ($term_list[0]=='Poetry') { $color = 'blue';}
+				elseif ($term_list[0]=='Nonfiction') { $color = 'red';}
+				else { $color = 'green';}
+
+			?>
+
+			<a class="book_common<?php echo ' '.$color ?>" href="<?php the_permalink(); ?>">
+				<p class="pbookname"><?php the_title(); ?></p>
+				<p class="pauthor"><?=$book_meta['author']?></p>
+				<p class="pcategory"><?php echo implode(', ', $term_list); ?></p>
+			</a>
 	
-	<?php endforeach; ?>
+		<?php endforeach; ?>
 </div>
 
 <?php
