@@ -1,18 +1,13 @@
-<div id="feedback_404" class="screen">
-	
-	<div class="container format">
-	
-		<h1>Sorry, there seems to be a problem.</h1>
-		
-		<p>This could be any of the following.</p>
-		
-		<ol>
-			<li>The page you requested has been removed or relocated.</li>
-			<li>The URL you typed has been entered wrong.</li>
-			<li>The page does not exist.</li>
-			<li>The link you clicked is broken.</li>
-		</ol>
-	
-	</div><!-- end of container -->
+<div class="error-page-copy">
 
-</div><!-- end of feedback_404 -->
+		<img src="<?= wp_make_link_relative(get_bloginfo('template_directory')) ?>/img/logo.png" alt="readlit" class="logo" />
+
+
+		<h1>That's not a book!</h1>
+
+		<p>All of our books are listed on the <a href="/">home page</a>.</p>
+
+		<p>If theres a public domain book, story, or text you'd like to see on ReadLit,
+		 please <a href="mailto:readlitapp@gmail.com">contact us</a> with your suggestion.</p>
+
+</div>
