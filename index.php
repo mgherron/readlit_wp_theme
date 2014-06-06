@@ -22,7 +22,7 @@ get_header();
 			<p class="main_descp">
 				All content is available in the public domain, courtesy of <a href="http://www.gutenberg.org/">Project Gutenberg</a>.
 			<p class="main_descp">
-				Created and maintained by Matt Herron. If you want to give feedback or get involved, <a href="mailto: readlitapp@gmail.com">contact us</a>.
+				<a href="mailto: readlitapp@gmail.com">Contact us</a> to suggest a book or get involved.
 			</P>
 			<!--
 			<input type="text" class="email" placeholder="Your Email Address"/>
