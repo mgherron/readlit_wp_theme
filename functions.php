@@ -114,8 +114,7 @@ function remove_menus () {
 global $menu;
 	$restricted = array(
 		__('Posts'), 
-		__('Links'), 
-		__('Pages'), 
+		__('Links'),  
 		__('Comments'), 
 	);
 	end ($menu);
